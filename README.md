@@ -1,16 +1,40 @@
-# todo_app
+# 📝 Drift Todo App (SQLite & Reactive UI)
 
-A new Flutter project.
+![Flutter](https://img.shields.io/badge/Flutter-3.19-%2302569B?logo=flutter)
+![Drift](https://img.shields.io/badge/Drift-SQLite-%2300599C?logo=sqlite)
+![Architecture](https://img.shields.io/badge/Architecture-Clean-orange)
 
-## Getting Started
+Современный менеджер задач, демонстрирующий работу с локальной реляционной базой данных (**SQLite**) через ORM **Drift**. Приложение построено на реактивной архитектуре: UI автоматически обновляется при изменении данных в БД.
 
-This project is a starting point for a Flutter application.
+---
 
-A few resources to get you started if this is your first Flutter project:
+## 🚀 Ключевые возможности
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+* **🗄️ Локальная БД (SQLite):** Использование `Drift` для надежного хранения данных и Type-Safe запросов.
+* **⚡ Reactive UI:** Интерфейс обновляется автоматически через `Streams` (без ручного вызова `setState`).
+* **🔍 Smart Search:** Живой поиск по задачам с использованием SQL-оператора `LIKE`.
+* **rf Динамическая фильтрация:** Сложные SQL-запросы для вкладок (Все / Активные / Завершенные).
+* **🧪 Тесты базы данных:** Unit-тесты с использованием **In-Memory Database** (тестирование без записи на диск).
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 🛠️ Технический стек
+
+* **Database:** Drift (ex-Moor) + sqlite3
+* **State Management:** Provider
+* **DI:** GetIt
+* **Code Generation:** build_runner
+
+## 📸 Скриншоты
+
+| Список задач | Фильтрация и Поиск | Создание задачи |
+|:---:|:---:|:---:|
+| ![Screenshot_20251121-011059](https://github.com/user-attachments/assets/95c568da-85ec-4d63-9511-bc8da4260505) | ![Screenshot_20251121-011114](https://github.com/user-attachments/assets/6c2707e8-efdc-41b1-9941-09157b03d944) | ![Screenshot_20251121-011126](https://github.com/user-attachments/assets/98db1f32-bee7-4d16-9b1a-f92e1f86fe5f) |
+
+## 🧪 Тестирование
+
+В проекте реализованы тесты для проверки целостности БД. База данных создается в оперативной памяти для скорости и изоляции тестов.
+
+```dart
+// Пример инициализации in-memory базы для тестов
+setUp(() {
+  database = AppDatabase.forTesting(NativeDatabase.memory());
+});
